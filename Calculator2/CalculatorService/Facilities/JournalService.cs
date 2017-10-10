@@ -10,16 +10,20 @@ namespace CalculatorService.Facilities
     {
         private const string STORE_PATH = "C:\\repos\\CalculatorServiceVS2015\\Calculator2\\CalculatorService\\Store.txt";
 
+        #region Storing
         public static void StoreOperation(Models.Operations op)
         {
             string journal = GetJournal();
             using (StreamWriter sw = new StreamWriter(STORE_PATH))
             {
                 sw.WriteLine(journal);
-                sw.WriteLine($"{ op.operation} => {op.Calculation} || {op.Key} || { op.Date}");
+                sw.WriteLine($"{ op.Operation} => {op.Calculation} || {op.Key} || { op.Date}");
                 sw.Close();
             }
         }
+        #endregion
+
+        #region Journal
         public static string GetJournal()
         {
             string journal = "";
@@ -39,5 +43,6 @@ namespace CalculatorService.Facilities
             }
             return journal.TrimEnd();
         }
+        #endregion
     }
 }

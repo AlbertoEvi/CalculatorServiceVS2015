@@ -30,18 +30,45 @@ namespace CalculatorService.Controllers
         {
             int[] nums = petition.Added;
             AddResponse result = new AddResponse();
+            string operationLine = "";
 
             logger.Trace("----- Method Add -----");
 
-
-            result.Result = 0;
-            for (int i = 0; i < nums.Length; i++)
+            try
             {
-                result.Result += nums[i];
-            }
+                result.Result = 0;
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (petition == null || petition.Added == null)
+                    {
+                        return Error400().ErrorMessage.ToString();
+                    }
 
-            var hasonServer = JsonConvert.SerializeObject(result);
-            return hasonServer;
+                    result.Result += nums[i];
+                    if (i != nums.Length - 1)
+                    {
+                        operationLine += $"{nums[i]} + ";
+                    }
+                    else
+                    {
+                        operationLine += $"{nums[i]}";
+                    }
+                }
+
+                logger.Trace($"{operationLine} = {result.Result}");
+
+                if (Request.Headers.GetValues("X_Evi_Tracking_Id") != null && Request.Headers.GetValues("X_Evi_Tracking_Id").Any())
+                {
+                    string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                    JournalService.StoreOperation(CreateOperation("Sum", $"{operationLine} = {result.Result}", DateTime.Now, key));
+                }
+
+                var hasonServer = JsonConvert.SerializeObject(result);
+                return hasonServer;
+            }catch(Exception)
+            {
+                return Error500().ErrorMessage.ToString();
+            }
 
         }
         #endregion
@@ -53,15 +80,46 @@ namespace CalculatorService.Controllers
         {
             int[] nums = petition.Numbers;
             SubtractResponse result = new SubtractResponse();
+            string operationLine = "";
 
-            result.Result = nums[0];
-            for (int i = 0; i < nums.Length; i++)
+            logger.Trace("----- Method Subtract -----");
+
+            try
             {
-                if (i != 0)
-                    result.Result -= nums[i];
+                if (petition == null || petition.Numbers == null)
+                {
+                    return Error400().ErrorMessage.ToString();
+                }
+
+                result.Result = nums[0];
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    if (i != 0)
+                        result.Result -= nums[i];
+                    if (i != nums.Length - 1)
+                    {
+                        operationLine += $"{nums[i]} - ";
+                    }
+                    else
+                    {
+                        operationLine += $"{nums[i]}";
+                    }
+                }
+
+                logger.Trace($"{operationLine} = {result.Result}");
+
+                if (Request.Headers.GetValues("X_Evi_Tracking_Id") != null && Request.Headers.GetValues("X_Evi_Tracking_Id").Any())
+                {
+                    string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                    JournalService.StoreOperation(CreateOperation("Subtraction", $"{operationLine} = {result.Result}", DateTime.Now, key));
+                }
+
+                var hasonServer = JsonConvert.SerializeObject(result);
+                return hasonServer;
+            }catch(Exception)
+            {
+                return Error500().ErrorMessage.ToString();
             }
-            var hasonServer = JsonConvert.SerializeObject(result);
-            return hasonServer;
         }
         #endregion
 
@@ -72,13 +130,44 @@ namespace CalculatorService.Controllers
         {
             int[] nums = petition.Multipliers;
             MultResponse result = new MultResponse();
-            result.Result = 1;
-            for (int i = 0; i < nums.Length; i++)
+            string operationLine = "";
+
+            logger.Trace("----- Method Multiply -----");
+
+            try
             {
-                result.Result *= nums[i];
+                if (petition == null || petition.Multipliers == null)
+                {
+                    return Error400().ErrorMessage.ToString();
+                }
+
+                result.Result = 1;
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    result.Result *= nums[i];
+                    if (i != nums.Length - 1)
+                    {
+                        operationLine += $"{nums[i]} * ";
+                    }
+                    else
+                    {
+                        operationLine += $"{nums[i]}";
+                    }
+                }
+
+                logger.Trace($"{operationLine} = {result.Result}");
+
+                if (Request.Headers.GetValues("X_Evi_Tracking_Id") != null && Request.Headers.GetValues("X_Evi_Tracking_Id").Any())
+                {
+                    string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                    JournalService.StoreOperation(CreateOperation("Multiplication", $"{operationLine} = {result.Result}", DateTime.Now, key));
+                }
+
+                var hasonServer = JsonConvert.SerializeObject(result);
+                return hasonServer;
+            }catch (Exception){
+                return Error500().ErrorMessage.ToString();
             }
-            var hasonServer = JsonConvert.SerializeObject(result);
-            return hasonServer;
         }
         #endregion
 
@@ -87,18 +176,43 @@ namespace CalculatorService.Controllers
         [ActionName("div")]
         public string Divide(DivRequest petition)
         {
-            int[] nums = new int[2];
+            int?[] nums = new int?[2];
+            string operationLine = "";
 
-            nums[0] = petition.Dividend;
-            nums[1] = petition.Diviser;
+            logger.Trace("----- Method Multiply -----");
 
-            DivResponse result = new DivResponse();
+            try
+            {
+                if (petition == null || !(petition.Dividend.HasValue || petition.Diviser.HasValue))
+                {
+                    return Error400().ErrorMessage.ToString();
+                }
 
-            result.Quotient = nums[0] / nums[1];
-            result.Remainder = nums[0] % nums[1];
+                nums[0] = petition.Dividend;
+                nums[1] = petition.Diviser;
 
-            var hasonServer = JsonConvert.SerializeObject(result);
-            return hasonServer;
+                DivResponse result = new DivResponse();
+
+                result.Quotient = (int)nums[0] / (int)nums[1];
+                result.Remainder = (int)nums[0] % (int)nums[1];
+
+                operationLine = $"{nums[0]} / {nums[1]}";
+
+                logger.Trace($"{operationLine} = {result.Quotient} | Remainder = {result.Remainder}");
+
+                if (Request.Headers.GetValues("X_Evi_Tracking_Id") != null && Request.Headers.GetValues("X_Evi_Tracking_Id").Any())
+                {
+                    string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                    JournalService.StoreOperation(CreateOperation("Division", $"{operationLine} = {result.Quotient} | Remainder = {result.Remainder}", DateTime.Now, key));
+                }
+
+                var hasonServer = JsonConvert.SerializeObject(result);
+                return hasonServer;
+            }
+            catch (Exception)
+            {
+                return Error500().ErrorMessage.ToString();
+            }
         }
         #endregion
 
@@ -108,13 +222,52 @@ namespace CalculatorService.Controllers
         public string Square(SquareRootRequest petition)
         {
             double num = petition.Number;
+            string operationLine = "";
 
-            SquareRootResponse result = new SquareRootResponse();
+            logger.Trace("----- Method Multiply -----");
 
-            result.Result = Math.Sqrt(num);
+            try
+            {
+                if (petition == null)
+                {
+                    return Error400().ErrorMessage.ToString();
+                }
 
-            var hasonServer = JsonConvert.SerializeObject(result);
-            return hasonServer;
+                SquareRootResponse result = new SquareRootResponse();
+
+                result.Result = Math.Sqrt(num);
+
+                operationLine = $"v-- {num}";
+
+                logger.Trace($"{operationLine} = {result.Result}");
+
+                if (Request.Headers.GetValues("X_Evi_Tracking_Id") != null && Request.Headers.GetValues("X_Evi_Tracking_Id").Any())
+                {
+                    string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                    JournalService.StoreOperation(CreateOperation("SquareRoot", $"{operationLine} = {result.Result}", DateTime.Now, key));
+                }
+
+                var hasonServer = JsonConvert.SerializeObject(result);
+                return hasonServer;
+            }
+            catch (Exception)
+            {
+                return Error500().ErrorMessage.ToString();
+            }
+        }
+        #endregion
+
+        #region CreateOperation
+        public Operations CreateOperation(string operation, string calculation, DateTime date, string key)
+        {
+            Operations ope = new Operations();
+
+            ope.Operation = operation;
+            ope.Calculation = calculation;
+            ope.Date = date;
+            ope.Key = key;
+
+            return ope;
         }
         #endregion
 
@@ -137,6 +290,34 @@ namespace CalculatorService.Controllers
             }
         }
 
+        #endregion
+
+        #region Errors
+        public static CommonError Error400()
+        {
+            CommonError error = new CommonError();
+
+            error.ErrorCode = "BadRequest";
+            error.ErrorStatus = 400;
+            error.ErrorMessage = "Unable to process request: the arguments or the request are null";
+
+            logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
+
+            return error;
+        }
+
+        public static CommonError Error500()
+        {
+            CommonError error = new CommonError();
+
+            error.ErrorCode = "InternalError";
+            error.ErrorStatus = 500;
+            error.ErrorMessage = "An unexpected error condition was triggered which made impossible to fulfill teh request. Pleas try again";
+
+            logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
+
+            return error;
+        }
         #endregion
     }
 }

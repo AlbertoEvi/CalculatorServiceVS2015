@@ -91,7 +91,7 @@ namespace Calculator
         }
         #endregion
 
-        #region historyJournal
+        #region HistoryJournal
         public static void History(string trackingId)
         {
             if (trackingId != "")
@@ -111,6 +111,7 @@ namespace Calculator
         {
             string id = StoringId();
             do { } while (CalcMenu(id) != "exit");
+            test.Test(); 
         }
         #endregion
     }

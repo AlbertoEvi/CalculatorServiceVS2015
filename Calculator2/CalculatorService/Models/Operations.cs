@@ -7,7 +7,7 @@ namespace CalculatorService.Models
 {
     public class Operations
     {
-        public string operation { get; set; }
+        public string Operation { get; set; }
 
         public string Calculation { get; set; }
 

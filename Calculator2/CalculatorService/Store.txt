@@ -1,1 +1,2 @@
 * * * * History of Operations * * * *
+Sum => 23 + 22 = 45 || FIRST || 10/10/2017 14:09:22

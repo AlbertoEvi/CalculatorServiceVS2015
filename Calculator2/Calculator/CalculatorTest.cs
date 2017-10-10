@@ -14,47 +14,29 @@ namespace Calculator
     public class CalculatorTest
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
-        #region Add
-        public void Add(int[] numbers, string url)
-        {
-            string jsonRequest = "";
-            Console.WriteLine($"Operacion: {string.Join("+", numbers)}");
-            logger.Info(url);
-
-            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Method = "POST";
-            req.ContentType = "application/json";
-            req.Headers.Add("X_Evi_Tracking_Id", "Test");
-
-            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+        
+        #region Testing
+            public void Test()
             {
-                AddRequest add = new AddRequest();
-                add.Added = numbers;
-                jsonRequest = JsonConvert.SerializeObject(add);
-                sw.WriteLine(jsonRequest);
-                sw.Close();
-            }
+            int[] numbers = new int[] { 20, 10};
 
-            string resp;
-            AddResponse response = new AddResponse();
-            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+            Console.WriteLine("---- We are testing all Methods —--");
+            logger.Info("---- We are testing all Methods —--");
 
-            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
-            {
-                resp = sr.ReadToEnd();
-                sr.Close();
-                Response.Close();
-            }
-
-            Console.WriteLine("The server responds: ");
-            Console.WriteLine(resp);
-
-            logger.Info($"The server responds: {resp}");
-            logger.Info("-------------------------------------------------------------");
+            Add(numbers, "http://localhost:51419/Calculator/add");
+            Add(new int[] { }, "http://localhost:51419/Calculator/add");
+            Sub(numbers, "http://localhost:51419/Calculator/sub");
+            Sub(new int[] { }, "http://localhost:51419/Calculator/sub");
+            Mult(numbers, "http://localhost:51419/Calculator/mult");
+            Mult(new int[] { }, "http://localhost:51419/Calculator/mult");
+            Div(numbers, "http://localhost:51419/Calculator/div");
+            Div(new int[] { }, "http://localhost:51419/Calculator/div");
+            SquareRoot(25, "http://localhost:51419/Calculator/div");
+            getHistory("http://localhost:51419/Calculator/history");
         }
         #endregion
 
+        #region History
         public void getHistory(string url)
         {
             logger.Info(url);
@@ -75,5 +57,212 @@ namespace Calculator
             }
             Console.WriteLine(history);
         }
+        #endregion
+        
+        #region Add
+        public void Add(int[] numbers, string url)
+        {
+            string jsonRequest = "";
+            Console.WriteLine($"Operacion: {string.Join("+", numbers)}");
+            
+            logger.Info(url);
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add("X_Evi_Tracking_Id", "Test");
+
+            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+            {
+                AddRequest add = new AddRequest();
+                add.Added = numbers;
+                jsonRequest = JsonConvert.SerializeObject(add);
+                sw.WriteLine(jsonRequest);
+                sw.Close();
+            }
+            
+            string resp;
+            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+
+            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+            {
+                resp = sr.ReadToEnd();
+                sr.Close();
+                Response.Close();
+            }
+            
+            Console.WriteLine("The server responds: ");
+            Console.WriteLine(resp);
+            
+            logger.Info($"The server responds: {resp}");
+            logger.Info("-------------------------------------------------------------");
+        }
+        #endregion
+
+        #region Sub
+        public void Sub(int[] numbers, string url)
+        {
+            string jsonRequest = "";
+            Console.WriteLine($"Operacion: {string.Join("-", numbers)}");
+
+            logger.Info(url);
+            
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add("X_Evi_Tracking_Id", "Test");
+
+            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+            {
+                SubtractRequest sub = new SubtractRequest();
+                sub.Numbers = numbers;
+                jsonRequest = JsonConvert.SerializeObject(sub);
+                sw.WriteLine(jsonRequest);
+                sw.Close();
+            }
+
+            string resp;
+            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+            
+            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+            {
+                resp = sr.ReadToEnd();
+                sr.Close();
+                Response.Close();
+            }
+            
+            Console.WriteLine("The server responds: ");
+            Console.WriteLine(resp);
+            
+            logger.Info($"The server responds: {resp}");
+            logger.Info("-------------------------------------------------------------");
+        }
+        #endregion
+
+        #region Mult
+        public void Mult(int[] numbers, string url)
+        {
+            string jsonRequest = "";
+            Console.WriteLine($"Operacion: {string.Join("*", numbers)}");
+
+            logger.Info(url);
+            
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add("X_Evi_Tracking_Id", "Test");
+            
+            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+            {
+                MultRequest mult = new MultRequest();
+                mult.Multipliers = numbers;
+                jsonRequest = JsonConvert.SerializeObject(mult);
+                sw.WriteLine(jsonRequest);
+                sw.Close();
+            }
+            
+            string resp;
+            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+
+            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+            {
+                resp = sr.ReadToEnd();
+                sr.Close();
+                Response.Close();
+            }
+            
+            Console.WriteLine("The server responds: ");
+            Console.WriteLine(resp);
+            
+            logger.Info($"The server responds: {resp}");
+            logger.Info("-------------------------------------------------------------");
+        }
+        #endregion
+
+        #region Div
+        public void Div(int[] numbers, string url)
+        {
+            string jsonRequest = "";
+            Console.WriteLine($"Operacion: {string.Join("/", numbers)}");
+            
+            logger.Info(url);
+            
+            DivRequest div = new DivRequest();
+
+            if (numbers.Length != 0)
+            {
+                div.Dividend = numbers[0];
+                div.Diviser = numbers[1];
+            }
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add("X_Evi_Tracking_Id", "Test");
+
+            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+            {
+                jsonRequest = JsonConvert.SerializeObject(div);
+                sw.WriteLine(jsonRequest);
+                sw.Close();
+            }
+            
+            string resp;
+            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+
+            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+            {
+                resp = sr.ReadToEnd();
+                sr.Close();
+                Response.Close();
+            }
+            
+            Console.WriteLine("The server responds: ");
+            Console.WriteLine(resp);
+
+            logger.Info($"The server responds: {resp}");
+            logger.Info("-------------------------------------------------------------");
+        }
+        #endregion
+
+        #region SquareRoot
+        public void SquareRoot(double number, string url)
+        {
+            string jsonRequest = "";
+            Console.WriteLine($"Operacion: v-- {number}");
+
+            logger.Info(url);
+
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            req.Headers.Add("X_Evi_Tracking_Id", "Test");
+
+            using (StreamWriter sw = new StreamWriter(req.GetRequestStream()))
+            {
+                SquareRootRequest sqr = new SquareRootRequest();
+                sqr.Number = number;
+                jsonRequest = JsonConvert.SerializeObject(sqr);
+                sw.WriteLine(jsonRequest);
+                sw.Close();
+            }
+
+            string resp;
+            HttpWebResponse Response = (HttpWebResponse)req.GetResponse();
+
+            using (StreamReader sr = new StreamReader(Response.GetResponseStream(), Encoding.UTF8))
+            {
+                resp = sr.ReadToEnd();
+                sr.Close();
+                Response.Close();
+            }
+
+            Console.WriteLine("The server responds: ");
+            Console.WriteLine(resp);
+
+            logger.Info($"The server responds: {resp}");
+            logger.Info("-------------------------------------------------------------");
+        }
+        #endregion
     }
 }

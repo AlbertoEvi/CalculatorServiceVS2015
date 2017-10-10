@@ -8,7 +8,7 @@ namespace CalculatorService.Models
 {
     public class DivRequest
     {
-        public int Dividend { get; set; }
-        public int Diviser { get; set; }
+        public int? Dividend { get; set; }
+        public int? Diviser { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Calculator
         public static string url = "http://localhost:51419/Calculator/";
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        #region add
+        #region Add
 
         public void Add(string trackingId)
         {
@@ -72,7 +72,7 @@ namespace Calculator
         }
         #endregion
 
-        #region subtraction
+        #region Subtraction
 
         public void Subt(string trackingId)
         {
@@ -128,7 +128,7 @@ namespace Calculator
         }
         #endregion
 
-        #region multiply
+        #region Multiply
 
         public void Mult(string trackingId)
         {
@@ -242,7 +242,8 @@ namespace Calculator
             #endregion
         }
         #endregion
-        #region squareRoot
+
+        #region SquareRoot
 
         public void Square(string trackingId)
         {
