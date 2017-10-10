@@ -1,0 +1,11 @@
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\Calculator.exe.config
+C:\repos\Calculator2\Calculator2\Calculator\obj\Debug\Calculator.csprojResolveAssemblyReference.cache
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\NLog.config
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\Calculator.exe
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\Calculator.pdb
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\Newtonsoft.Json.dll
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\NLog.dll
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\Newtonsoft.Json.xml
+C:\repos\Calculator2\Calculator2\Calculator\bin\Debug\NLog.xml
+C:\repos\Calculator2\Calculator2\Calculator\obj\Debug\Calculator.exe
+C:\repos\Calculator2\Calculator2\Calculator\obj\Debug\Calculator.pdb
