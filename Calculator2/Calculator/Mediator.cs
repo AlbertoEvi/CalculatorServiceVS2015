@@ -211,7 +211,7 @@ namespace Calculator
             DivResponse result = new DivResponse();
 
             division.Dividend = numbers[0];
-            division.Diviser = numbers[1];
+            division.Divisor = numbers[1];
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{url}div");
             request.Method = "POST";

@@ -183,13 +183,13 @@ namespace CalculatorService.Controllers
 
             try
             {
-                if (petition == null || !(petition.Dividend.HasValue || petition.Diviser.HasValue))
+                if (petition == null || !(petition.Dividend.HasValue || petition.Divisor.HasValue))
                 {
                     return Error400().ErrorMessage.ToString();
                 }
 
                 nums[0] = petition.Dividend;
-                nums[1] = petition.Diviser;
+                nums[1] = petition.Divisor;
 
                 DivResponse result = new DivResponse();
 
