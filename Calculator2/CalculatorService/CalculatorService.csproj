@@ -197,6 +197,7 @@
     </Compile>
     <Compile Include="Models\AddRequest.cs" />
     <Compile Include="Models\AddResponse.cs" />
+    <Compile Include="Models\CommonError.cs" />
     <Compile Include="Models\DivRequest.cs" />
     <Compile Include="Models\DivResponse.cs" />
     <Compile Include="Models\MultRequest.cs" />

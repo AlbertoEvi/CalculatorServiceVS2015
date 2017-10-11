@@ -8,6 +8,6 @@ namespace Calculator.Models
 {
     public class SquareRootRequest
     {
-        public double Number { get; set; }
+        public double? Number { get; set; }
     }
 }

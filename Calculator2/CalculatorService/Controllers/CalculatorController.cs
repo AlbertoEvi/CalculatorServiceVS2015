@@ -32,7 +32,7 @@ namespace CalculatorService.Controllers
             AddResponse result = new AddResponse();
             string operationLine = "";
 
-            logger.Trace("----- Method Add -----");
+            logger.Trace("------- Add Method -------");
 
             try
             {
@@ -82,7 +82,7 @@ namespace CalculatorService.Controllers
             SubtractResponse result = new SubtractResponse();
             string operationLine = "";
 
-            logger.Trace("----- Method Subtract -----");
+            logger.Trace("------- Subtract Method -------");
 
             try
             {
@@ -132,7 +132,7 @@ namespace CalculatorService.Controllers
             MultResponse result = new MultResponse();
             string operationLine = "";
 
-            logger.Trace("----- Method Multiply -----");
+            logger.Trace("------- Multiply Method -------");
 
             try
             {
@@ -179,7 +179,7 @@ namespace CalculatorService.Controllers
             int?[] nums = new int?[2];
             string operationLine = "";
 
-            logger.Trace("----- Method Multiply -----");
+            logger.Trace("------- Division Method -------");
 
             try
             {
@@ -221,21 +221,21 @@ namespace CalculatorService.Controllers
         [ActionName("sqr")]
         public string Square(SquareRootRequest petition)
         {
-            double num = petition.Number;
+            double? num = petition.Number;
             string operationLine = "";
 
-            logger.Trace("----- Method Multiply -----");
+            logger.Trace("------- SquareRoot Method -------");
 
             try
             {
-                if (petition == null)
+                if (petition == null || !(petition.Number.HasValue))
                 {
                     return Error400().ErrorMessage.ToString();
                 }
 
                 SquareRootResponse result = new SquareRootResponse();
 
-                result.Result = Math.Sqrt(num);
+                result.Result = Math.Sqrt((double)num);
 
                 operationLine = $"v-- {num}";
 
@@ -289,7 +289,25 @@ namespace CalculatorService.Controllers
                 return e.Message;
             }
         }
+        #endregion
 
+        #region Clearing
+        [HttpGet]
+        [ActionName("historyC")]
+        public string ClearHistory()
+        {
+            string history = "";
+            try
+            {
+                history = JournalService.ClearJournal();
+                return history;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e.Message);
+                return e.Message;
+            }
+        }
         #endregion
 
         #region Errors
@@ -312,7 +330,7 @@ namespace CalculatorService.Controllers
 
             error.ErrorCode = "InternalError";
             error.ErrorStatus = 500;
-            error.ErrorMessage = "An unexpected error condition was triggered which made impossible to fulfill teh request. Pleas try again";
+            error.ErrorMessage = "An unexpected error condition was triggered which made impossible to fulfill the request. Please try again";
 
             logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
 

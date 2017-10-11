@@ -1,2 +1,7 @@
-* * * * History of Operations * * * *
-Sum => 23 + 22 = 45 || FIRST || 10/10/2017 14:09:22
+------ Operation's history ------
+Sum => 213 + 465 = 678 || Test || 11/10/2017 12:57:08
+Sum => 40 + 22 = 62 || Test || 11/10/2017 12:57:20
+Subtraction => 40 - 22 = 18 || Test || 11/10/2017 12:57:21
+Multiplication => 40 * 22 = 880 || Test || 11/10/2017 12:57:21
+Division => 40 / 22 = 1 | Remainder = 18 || Test || 11/10/2017 12:57:21
+SquareRoot => v-- 25 = 5 || Test || 11/10/2017 12:57:21

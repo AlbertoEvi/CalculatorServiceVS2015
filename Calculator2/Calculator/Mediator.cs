@@ -191,7 +191,7 @@ namespace Calculator
             #region DivisionStuff
 
             Console.WriteLine("-------Division Operation------");
-            Console.WriteLine("Type the binomial int division  you want to do(ex:13 / 12): ");
+            Console.WriteLine("Type the binomial int division you want to do(ex:13 / 12): ");
 
             char symb = '/';
             string div = Console.ReadLine();
@@ -291,7 +291,7 @@ namespace Calculator
             #endregion
         }
         #endregion
-
+        
         #region Journal
         public void Journal(string trackingId)
         {
@@ -314,7 +314,7 @@ namespace Calculator
                     while (line != null)
                     {
                         line = sr.ReadLine();
-                        if (line != "------History of Operations ------" && line != null)
+                        if (line != "------ History of Operations that you carried out in the app's launch this time ------" && line != null)
                         {
                             string id = line.Split(sep)[2].Trim();
                             if (id == trackingId)
@@ -326,12 +326,12 @@ namespace Calculator
                 }
                 else
                 {
-                    Console.WriteLine("Not Tracking Id");
+                    Console.WriteLine("No Tracking Id");
                 }
                 sr.Close();
                 response.Close();
             }
-            Console.WriteLine("------ History of Operations ------");
+            Console.WriteLine("------ History of Operations that you carry out in this app's launch ------");
             Console.WriteLine(history);
         }
         #endregion

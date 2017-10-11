@@ -23,7 +23,27 @@ namespace CalculatorService.Facilities
         }
         #endregion
 
-        #region Journal
+        #region Clearing
+        public static string ClearJournal()
+        {
+            string journal = "";
+            using (StreamWriter sw = new StreamWriter(STORE_PATH,false))//true inserts the line at the end and false overwrites it
+            {
+                sw.WriteLine("------ Operation's history ------");
+                sw.WriteLine("");
+                sw.Close();
+            }
+
+            using (StreamReader sr = new StreamReader(STORE_PATH))
+            {
+                journal = sr.ReadToEnd();
+            }
+
+            return journal.TrimEnd();
+        }
+        #endregion
+
+        #region GetJournal
         public static string GetJournal()
         {
             string journal = "";
@@ -32,7 +52,7 @@ namespace CalculatorService.Facilities
             {
                 using (StreamWriter sw = File.CreateText(STORE_PATH))
                 {
-                    sw.WriteLine("* * * * History of Operations * * * *");
+                    sw.WriteLine("------ Operation's history ------");
                     sw.Close();
                 }
             }

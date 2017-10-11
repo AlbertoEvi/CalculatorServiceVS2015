@@ -22,7 +22,7 @@ namespace Calculator
                 case "y":
                     do
                     {
-                        Console.WriteLine("Type the id you want to use to make the saving: ");
+                        Console.WriteLine("Type the id you want to use to save the mathematical operations: ");
                         idOperation = Console.ReadLine();
                     } while (String.IsNullOrEmpty(idOperation) && String.IsNullOrWhiteSpace(idOperation));
                     break;
@@ -41,6 +41,7 @@ namespace Calculator
         #region Menu
         public static string CalcMenu(string trackingId)
         {
+            Console.WriteLine();
             Console.WriteLine("Welcome to our Calculator's Menu. Type an option to start working or \"Exit\" to finish and go out.");
             Console.WriteLine(" 1. Addition");
             Console.WriteLine(" 2. Subtraction");
@@ -48,6 +49,8 @@ namespace Calculator
             Console.WriteLine(" 4. Division");
             Console.WriteLine(" 5. Square root");
             Console.WriteLine(" 6. History");
+            Console.WriteLine(" 7. Clear (Clears the history)");
+            Console.WriteLine(" 8. Test");
             Console.WriteLine(" Exit ");
 
             string opt = Console.ReadLine().ToLowerInvariant().Trim();
@@ -79,11 +82,19 @@ namespace Calculator
                 case "history":
                     History(trackingId);
                     break;
+                case "7":
+                case "clear":
+                    Clear();
+                    break;
+                case "8":
+                case "test":
+                    test.Test();
+                    break;
                 case "exit":
                     Environment.Exit(255);
                     break;
                 default:
-                    Console.WriteLine("The command introduced is invalid. The options you can type are: addition(1), subtraction(2), multiply(3), division(4) or exit(5)");
+                    Console.WriteLine("The command introduced is invalid. The options you can type are: addition(1), subtraction(2), multiply(3), division(4), squareroot(5), history(6), clear(7), test(8) or exit");
                     CalcMenu(trackingId);
                     break;
             }
@@ -97,12 +108,17 @@ namespace Calculator
             if (trackingId != "")
             {
                 med.Journal(trackingId);
+                test.getHistory("http://localhost:51419/Calculator/history");
             }
             else
             {
                 test.getHistory("http://localhost:51419/Calculator/history");
             }
 
+        }
+        public static void Clear()
+        {
+            test.clearHistory("http://localhost:51419/Calculator/historyC");
         }
         #endregion
 
@@ -111,7 +127,6 @@ namespace Calculator
         {
             string id = StoringId();
             do { } while (CalcMenu(id) != "exit");
-            test.Test(); 
         }
         #endregion
     }
