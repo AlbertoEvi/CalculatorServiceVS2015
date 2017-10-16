@@ -23,17 +23,31 @@ namespace Calculator
             #region AddStuff
 
             Console.WriteLine("------Addition Operation------");
-            Console.WriteLine("Type the sum you want to do(ex:13 + 12 + 5): ");
+            Console.WriteLine("Type the integer sum you want to do(ex:13 + 12 + 5): ");
 
             char symb = '+';
             string sum = Console.ReadLine();
+            while (!sum.Contains('+') || sum.Contains('-') || sum.Contains('/') || sum.Contains('*')) {
+                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the sum): ");
+                sum = Console.ReadLine();
+            }
             string[] nums = sum.Split(symb);
 
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
-                numbers[i] = int.Parse(nums[i].Trim());
-                Console.WriteLine(numbers[i]);
+                int n;
+                bool isNumeric;
+                if (isNumeric = int.TryParse(nums[i], out n))
+                {
+                    numbers[i] = int.Parse(nums[i].Trim());
+                    Console.WriteLine(numbers[i]);
+                }else
+                {
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
+                    Console.WriteLine();
+                    Add(trackingId);
+                }
             }
             #endregion
 
@@ -79,17 +93,33 @@ namespace Calculator
             #region SubtractionStuff
 
             Console.WriteLine("------Subtraction Operation------");
-            Console.WriteLine("Type the subtraction you want to do(ex:13 - 12 - 5): ");
+            Console.WriteLine("Type the integer subtraction you want to do(ex:13 - 12 - 5): ");
 
             char symb = '-';
             string subt = Console.ReadLine();
+            while (!subt.Contains('-') || subt.Contains('+') || subt.Contains('/') || subt.Contains('*'))
+            {
+                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the subtraction): ");
+                subt = Console.ReadLine();
+            }
             string[] nums = subt.Split(symb);
 
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
-                numbers[i] = int.Parse(nums[i].Trim());
-                Console.WriteLine(numbers[i]);
+                int n;
+                bool isNumeric;
+                if (isNumeric = int.TryParse(nums[i], out n))
+                {
+                    numbers[i] = int.Parse(nums[i].Trim());
+                    Console.WriteLine(numbers[i]);
+                }
+                else
+                {
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
+                    Console.WriteLine();
+                    Subt(trackingId);
+                }
             }
             #endregion
 
@@ -135,17 +165,33 @@ namespace Calculator
             #region MultiplicationStuff
 
             Console.WriteLine("------Multplication Operation------");
-            Console.WriteLine("Type the multiplication you want to do(ex:13 * 12 * 5): ");
+            Console.WriteLine("Type the integer multiplication you want to do(ex:13 * 12 * 5): ");
 
             char symb = '*';
             string mult = Console.ReadLine();
+            while (!mult.Contains('*') || mult.Contains('+') || mult.Contains('/') || mult.Contains('-'))
+            {
+                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the multiplication): ");
+                mult = Console.ReadLine();
+            }
             string[] nums = mult.Split(symb);
 
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
-                numbers[i] = int.Parse(nums[i].Trim());
-                Console.WriteLine(numbers[i]);
+                int n;
+                bool isNumeric;
+                if (isNumeric = int.TryParse(nums[i], out n))
+                {
+                    numbers[i] = int.Parse(nums[i].Trim());
+                    Console.WriteLine(numbers[i]);
+                }
+                else
+                {
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
+                    Console.WriteLine();
+                    Mult(trackingId);
+                }
             }
             #endregion
 
@@ -191,17 +237,33 @@ namespace Calculator
             #region DivisionStuff
 
             Console.WriteLine("-------Division Operation------");
-            Console.WriteLine("Type the binomial int division you want to do(ex:13 / 12): ");
+            Console.WriteLine("Type the binomial integer division you want to do(ex:13 / 12): ");
 
             char symb = '/';
             string div = Console.ReadLine();
+            while (!div.Contains('/') || div.Contains('+') || div.Contains('*') || div.Contains('-'))
+            {
+                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the division): ");
+                div = Console.ReadLine();
+            }
             string[] nums = div.Split(symb);
 
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
-                numbers[i] = int.Parse(nums[i].Trim());
-                Console.WriteLine(numbers[i]);
+                int n;
+                bool isNumeric;
+                if (isNumeric = int.TryParse(nums[i], out n))
+                {
+                    numbers[i] = int.Parse(nums[i].Trim());
+                    Console.WriteLine(numbers[i]);
+                }
+                else
+                {
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
+                    Console.WriteLine();
+                    Div(trackingId);
+                };
             }
             #endregion
 
@@ -254,7 +316,21 @@ namespace Calculator
 
             string sqr = Console.ReadLine();
 
-            double sr = double.Parse(sqr);
+            double sr;
+            bool isNumeric;
+
+            if (isNumeric = double.TryParse(sqr, out sr))
+            {
+                sr = double.Parse(sqr);
+                Console.WriteLine(sr);
+            }
+            else
+            {
+                Console.WriteLine("The value introduced isn't valid, try it again: ");
+                Console.WriteLine();
+                Square(trackingId);
+            }
+
             #endregion
 
             #region Connection
