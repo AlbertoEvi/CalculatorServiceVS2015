@@ -8,3 +8,22 @@ Multiplication => 123 * 123 = 15129 || y || 16/10/2017 11:23:08
 Division => 132 / 12 = 11 | Remainder = 0 || y || 16/10/2017 11:23:21
 SquareRoot => v-- 321 = 17,9164728671689 || 4rew || 16/10/2017 11:25:25
 SquareRoot => v-- 0 = 0 || 4rew || 16/10/2017 11:25:26
+Sum => 40 + 22 = 62 || This are the operations from the autotesting || 16/10/2017 11:52:07
+Subtraction => 40 - 22 = 18 || This are the operations from the autotesting || 16/10/2017 11:52:08
+Multiplication => 40 * 22 = 880 || This are the operations from the autotesting || 16/10/2017 11:52:08
+Division => 40 / 22 = 1 | Remainder = 18 || This are the operations from the autotesting || 16/10/2017 11:52:08
+SquareRoot => v-- 25 = 5 || This are the operations from the autotesting || 16/10/2017 11:52:08
+Sum => 40 + 22 = 62 || This are the operations from the autotesting || 16/10/2017 11:55:12
+Subtraction => 40 - 22 = 18 || This are the operations from the autotesting || 16/10/2017 11:55:13
+Multiplication => 40 * 22 = 880 || This are the operations from the autotesting || 16/10/2017 11:55:13
+Division => 40 / 22 = 1 | Remainder = 18 || This are the operations from the autotesting || 16/10/2017 11:55:13
+SquareRoot => v-- 25 = 5 || This are the operations from the autotesting || 16/10/2017 11:55:13
+Sum => 40 + 22 = 62 || This are the operations from the autotesting || 16/10/2017 11:56:12
+Subtraction => 40 - 22 = 18 || This are the operations from the autotesting || 16/10/2017 11:56:13
+Multiplication => 40 * 22 = 880 || This are the operations from the autotesting || 16/10/2017 11:56:13
+Division => 40 / 22 = 1 | Remainder = 18 || This are the operations from the autotesting || 16/10/2017 11:56:13
+SquareRoot => v-- 25 = 5 || This are the operations from the autotesting || 16/10/2017 11:56:13
+Sum => 12 + 1 = 13 || wqewq || 16/10/2017 12:01:45
+Sum => 213 + 12 = 225 || wqewq || 16/10/2017 12:03:28
+Sum => 1321 + 0 = 1321 || wqewq || 16/10/2017 12:03:28
+Multiplication => 132 * 2 = 264 || wqewq || 16/10/2017 12:03:48

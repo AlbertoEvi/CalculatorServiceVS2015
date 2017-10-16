@@ -36,14 +36,13 @@ namespace CalculatorService.Controllers
 
             try
             {
+                if (petition == null || petition.Added == null)
+                {
+                    return Error400().ErrorMessage.ToString();
+                }
                 result.Result = 0;
                 for (int i = 0; i < nums.Length; i++)
                 {
-                    if (petition == null || petition.Added == null)
-                    {
-                        return Error400().ErrorMessage.ToString();
-                    }
-
                     result.Result += nums[i];
                     if (i != nums.Length - 1)
                     {
@@ -317,7 +316,7 @@ namespace CalculatorService.Controllers
 
             error.ErrorCode = "BadRequest";
             error.ErrorStatus = 400;
-            error.ErrorMessage = "Unable to process request: the arguments or the request are null";
+            error.ErrorMessage = "Unable to process request: the arguments or the request are null.";
 
             logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
 
@@ -330,7 +329,7 @@ namespace CalculatorService.Controllers
 
             error.ErrorCode = "InternalError";
             error.ErrorStatus = 500;
-            error.ErrorMessage = "An unexpected error condition was triggered which made impossible to fulfill the request. Please try again";
+            error.ErrorMessage = "An unexpected error condition was triggered which made impossible to fulfill the request. Please try again.";
 
             logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
 

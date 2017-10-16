@@ -119,7 +119,7 @@ namespace Calculator
                 Response.Close();
             }
             
-            Console.WriteLine("The server response is: ");
+            Console.WriteLine("The server response is a: ");
             Console.WriteLine(resp);
             
             logger.Info($"The server response is: {resp}");
