@@ -44,9 +44,8 @@ namespace Calculator
                     Console.WriteLine(numbers[i]);
                 }else
                 {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
-                    Console.WriteLine();
-                    Add(trackingId);
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
+                    return;
                 }
             }
             #endregion
@@ -116,9 +115,8 @@ namespace Calculator
                 }
                 else
                 {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
-                    Console.WriteLine();
-                    Subt(trackingId);
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
+                    return;
                 }
             }
             #endregion
@@ -179,14 +177,15 @@ namespace Calculator
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
+                int n;
+                bool isNumeric;
+
                 if (nums[i].Length > 10)
                 {
                     Console.WriteLine("One or more values introduced have more than 10 digits, try it again: ");
-                    Console.WriteLine();
-                    Mult(trackingId);
+                    return;
                 }
-                int n;
-                bool isNumeric;
+                
                 if (isNumeric = int.TryParse(nums[i], out n))
                 {
                     numbers[i] = int.Parse(nums[i].Trim());
@@ -194,9 +193,8 @@ namespace Calculator
                 }
                 else
                 {
-                    Console.WriteLine("One or more values introduced aren't integers, try it again: ");
-                    Console.WriteLine();
-                    Mult(trackingId);
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
+                    return;
                 }
             }
             #endregion
@@ -266,10 +264,9 @@ namespace Calculator
                 }
                 else
                 {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
-                    Console.WriteLine();
-                    Div(trackingId);
-                };
+                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
+                    return;
+                }
             }
             #endregion
 
@@ -331,9 +328,8 @@ namespace Calculator
             }
             else
             {
-                Console.WriteLine("The value introduced isn't valid, try it again: ");
-                Console.WriteLine();
-                Square(trackingId);
+                Console.WriteLine("The value introduced isn't valid, try it again.");
+                return;
             }
 
             #endregion
