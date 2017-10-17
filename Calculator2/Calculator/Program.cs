@@ -114,8 +114,8 @@ namespace Calculator
             {
                 test.getHistory("http://localhost:51419/Calculator/history");
             }
-
         }
+
         public static void Clear()
         {
             test.clearHistory("http://localhost:51419/Calculator/historyC");

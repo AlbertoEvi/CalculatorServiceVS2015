@@ -36,8 +36,6 @@ namespace Calculator
             Div(new int[] { }, "http://localhost:51419/Calculator/div");
 
             SquareRoot(25, "http://localhost:51419/Calculator/sqr");
-            /*double dbl = double.Parse("");
-            SquareRoot(dbl, "http://localhost:51419/Calculator/sqr");*/
 
             getHistory("http://localhost:51419/Calculator/history");
         }
@@ -122,7 +120,7 @@ namespace Calculator
             Console.WriteLine("The server response is : ");
             Console.WriteLine(resp);
             
-            logger.Info($"The server response is: {resp}");
+            logger.Info($"The server response is : {resp}");
             logger.Info("---------");
         }
         #endregion
@@ -159,10 +157,10 @@ namespace Calculator
                 Response.Close();
             }
             
-            Console.WriteLine("The server response is: ");
+            Console.WriteLine("The server response is : ");
             Console.WriteLine(resp);
             
-            logger.Info($"The server response is: {resp}");
+            logger.Info($"The server response is : {resp}");
             logger.Info("---------");
         }
         #endregion
@@ -199,10 +197,10 @@ namespace Calculator
                 Response.Close();
             }
             
-            Console.WriteLine("The server response is: ");
+            Console.WriteLine("The server response is : ");
             Console.WriteLine(resp);
             
-            logger.Info($"The server response is: {resp}");
+            logger.Info($"The server response is : {resp}");
             logger.Info("---------");
         }
         #endregion
@@ -245,10 +243,10 @@ namespace Calculator
                 Response.Close();
             }
             
-            Console.WriteLine("The server response is: ");
+            Console.WriteLine("The server response is : ");
             Console.WriteLine(resp);
 
-            logger.Info($"The server response is: {resp}");
+            logger.Info($"The server response is : {resp}");
             logger.Info("---------");
         }
         #endregion
@@ -285,10 +283,10 @@ namespace Calculator
                 Response.Close();
             }
 
-            Console.WriteLine("The server response is: ");
+            Console.WriteLine("The server response is : ");
             Console.WriteLine(resp);
 
-            logger.Info($"The server response is: {resp}");
+            logger.Info($"The server response is : {resp}");
             logger.Info("---------");
         }
         #endregion

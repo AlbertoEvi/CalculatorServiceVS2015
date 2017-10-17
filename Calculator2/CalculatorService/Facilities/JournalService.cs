@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.IO;
+using CalculatorService.Models;
 
 namespace CalculatorService.Facilities
 {
-    public class JournalService
+    public static class JournalService
     {
         private const string STORE_PATH = "C:\\repos\\CalculatorServiceVS2015\\Calculator2\\CalculatorService\\";
         private static string name = string.Format("Store-{0:yyyy-MM-dd}.txt", DateTime.Now);
@@ -41,6 +42,16 @@ namespace CalculatorService.Facilities
             }
 
             return journal.TrimEnd();
+        }
+        #endregion
+
+        #region storingOperation
+        public static void Storing(string operation, string operationType, string key)
+        {
+            if (key != null)
+            {
+                StoreOperation(Operations.CreateOperation(operationType, operation, DateTime.Now, key));
+            }
         }
         #endregion
 
