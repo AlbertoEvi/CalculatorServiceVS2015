@@ -165,7 +165,7 @@ namespace Calculator
             #region MultiplicationStuff
 
             Console.WriteLine("------Multplication Operation------");
-            Console.WriteLine("Type the integer multiplication you want to do(ex:13 * 12 * 5): ");
+            Console.WriteLine("Type the integer multiplication you want to do, multipliers must have 10 or less digits(ex:13 * 12 * 5): ");
 
             char symb = '*';
             string mult = Console.ReadLine();
@@ -179,6 +179,12 @@ namespace Calculator
             int[] numbers = new int[nums.Length];
             for (int i = 0; i < nums.Length; i++)
             {
+                if (nums[i].Length > 10)
+                {
+                    Console.WriteLine("One or more values introduced have more than 10 digits, try it again: ");
+                    Console.WriteLine();
+                    Mult(trackingId);
+                }
                 int n;
                 bool isNumeric;
                 if (isNumeric = int.TryParse(nums[i], out n))
@@ -188,7 +194,7 @@ namespace Calculator
                 }
                 else
                 {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again: ");
+                    Console.WriteLine("One or more values introduced aren't integers, try it again: ");
                     Console.WriteLine();
                     Mult(trackingId);
                 }
@@ -296,7 +302,7 @@ namespace Calculator
                 Console.WriteLine("The server operation's result is:");
                 result = JsonConvert.DeserializeObject<DivResponse>(stRead.ReadToEnd());
                 Console.WriteLine(result.Quotient);
-                Console.WriteLine("The remainder of the division is:");
+                Console.WriteLine("The remainder of the last division is:");
                 Console.WriteLine(result.Remainder);
                 stRead.Close();
             }

@@ -8,6 +8,6 @@ namespace Calculator.Models
 {
     public class MultResponse
     {
-        public int Result { get; set; }
+        public long Result { get; set; }
     }
 }
