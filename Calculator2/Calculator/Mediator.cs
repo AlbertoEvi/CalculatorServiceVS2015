@@ -237,7 +237,7 @@ namespace Calculator
             #region DivisionStuff
 
             Console.WriteLine("-------Division Operation------");
-            Console.WriteLine("Type the binomial integer division you want to do(ex:13 / 12): ");
+            Console.WriteLine("Type the integer division you want to do(ex:1243 / 12 / 2): ");
 
             char symb = '/';
             string div = Console.ReadLine();
@@ -272,8 +272,7 @@ namespace Calculator
             DivRequest division = new DivRequest();
             DivResponse result = new DivResponse();
 
-            division.Dividend = numbers[0];
-            division.Divisor = numbers[1];
+            division.Numbers = numbers;
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create($"{url}div");
             request.Method = "POST";

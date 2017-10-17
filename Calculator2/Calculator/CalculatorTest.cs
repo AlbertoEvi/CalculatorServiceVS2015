@@ -217,8 +217,7 @@ namespace Calculator
 
             if (numbers.Length != 0)
             {
-                div.Dividend = numbers[0];
-                div.Divisor = numbers[1];
+                div.Numbers = numbers;
             }
 
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);

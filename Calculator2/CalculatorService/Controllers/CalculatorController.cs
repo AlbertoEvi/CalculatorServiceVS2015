@@ -126,7 +126,7 @@ namespace CalculatorService.Controllers
 
             try
             {
-                if (petition == null || !(petition.Dividend.HasValue || petition.Divisor.HasValue))
+                if (petition == null || petition.Numbers == null)
                 {
                     return Error400().ErrorMessage.ToString();
                 }
@@ -185,8 +185,7 @@ namespace CalculatorService.Controllers
         {
             try
             {
-                string history = JournalService.GetJournal();
-                return history;
+                return JournalService.GetJournal();
             }
             catch (Exception e)
             {

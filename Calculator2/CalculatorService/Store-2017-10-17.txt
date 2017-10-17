@@ -1,2 +1,8 @@
 ------ Operation's history ------
-
+Division => 2 / 21 = 7 | Remainder = 7 || Y || 17/10/2017 12:28:27
+Division => 1312 / 1 = 17 | Remainder = 0 || yas || 17/10/2017 12:33:27
+Division => 310 / 3 / 23 = 0 | Remainder = 0 || yas || 17/10/2017 12:33:28
+Division => 13 / 123 = 0 | Remainder = 0 || yas || 17/10/2017 12:34:06
+Division => 7 / 8 = 2204 | Remainder = 4 || y || 17/10/2017 12:40:53
+Division => 34 / 54 = 170 | Remainder = 8 || ytrred || 17/10/2017 12:41:43
+Division => 43 / 4 / 7 = 1097 | Remainder = 5 || ytrred || 17/10/2017 12:42:29

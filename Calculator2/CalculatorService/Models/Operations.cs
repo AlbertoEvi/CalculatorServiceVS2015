@@ -108,16 +108,25 @@ namespace CalculatorService.Models
         #region Division
         public static string Div(DivRequest petition, DivResponse result)
         {
-            int?[] nums = new int?[2];
+            int[] nums = petition.Numbers;
             string operationLine = "";
 
-            nums[0] = petition.Dividend;
-            nums[1] = petition.Divisor;
+            result.Quotient = nums[0];
 
-            result.Quotient = (int)nums[0] / (int)nums[1];
-            result.Remainder = (int)nums[0] % (int)nums[1];
+            for (int i = 1; i < nums.Length; i++)
+            {
+                result.Quotient /= nums[i];
 
-            operationLine = $"{nums[0]} / {nums[1]}";
+                if (i != nums.Length - 1)
+                {
+                    operationLine += $"{nums[i]} / ";
+                }
+                else
+                {
+                    result.Remainder = result.Quotient % nums[nums.Length - 1];
+                    operationLine += $"{nums[i]}";
+                }
+            }
 
             return $"{operationLine} = {result.Quotient} | Remainder = {result.Remainder}";
         }
