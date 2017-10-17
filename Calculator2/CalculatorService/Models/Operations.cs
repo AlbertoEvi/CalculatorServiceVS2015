@@ -85,15 +85,15 @@ namespace CalculatorService.Models
         {
             int[] nums = petition.Multipliers;
             string operationLine = "";
-            result.Result = 1;
+            result.Result = nums[0];
 
-            for (int i = 0; i < nums.Length; i++)
+            for (int i = 1; i < nums.Length; i++)
             {
                 result.Result *= nums[i];
 
                 if (i != nums.Length - 1)
                 {
-                    operationLine += $"{nums[i]} - ";
+                    operationLine += $"{nums[i]} * ";
                 }
                 else
                 {
