@@ -1,0 +1,12 @@
+------ Operation's history ------
+Sum => 213 + 4125 + 879 = 5217 || id123 || 18/10/2017 9:29:23
+Subtraction => 1231312432 - 4321 - 12 = 1231308099 || id123 || 18/10/2017 9:29:38
+Multiplication => 12345 = 3962745 || id123 || 18/10/2017 9:30:16
+Multiplication => 544334 * 87978 = 58963078022108568 || id123 || 18/10/2017 9:30:48
+Division => 56 / 9 = 2 | Remainder = 2 || id123 || 18/10/2017 9:31:20
+SquareRoot => v-- 2187954 = 1479,17341782497 || id123 || 18/10/2017 9:31:37
+Sum => 40 + 22 = 62 || This are the operations from the autotesting || 18/10/2017 9:31:42
+Subtraction => 40 - 22 = 18 || This are the operations from the autotesting || 18/10/2017 9:31:42
+Multiplication => 22 = 880 || This are the operations from the autotesting || 18/10/2017 9:31:42
+Division => 22 = 1 | Remainder = 1 || This are the operations from the autotesting || 18/10/2017 9:31:43
+SquareRoot => v-- 25 = 5 || This are the operations from the autotesting || 18/10/2017 9:31:43

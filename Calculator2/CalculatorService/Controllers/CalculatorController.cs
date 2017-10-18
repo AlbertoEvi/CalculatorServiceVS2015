@@ -13,16 +13,8 @@ namespace CalculatorService.Controllers
 {
     public class CalculatorController : Controller
     {
-        #region getCalculator
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        #endregion
-
+        
         #region Add
         [HttpPost]
         [ActionName("add")]

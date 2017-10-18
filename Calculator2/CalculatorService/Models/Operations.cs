@@ -31,7 +31,7 @@ namespace CalculatorService.Models
         }
         #endregion
 
-        #region Add
+        #region Addition
         public static string Add(AddRequest petition, AddResponse result)
         {
             int[] nums = petition.Added;
@@ -55,7 +55,7 @@ namespace CalculatorService.Models
         }
         #endregion
 
-        #region Subtract
+        #region Subtraction
         public static string Subt(SubtractRequest petition, SubtractResponse result)
         {
             int[] nums = petition.Numbers;
@@ -80,7 +80,7 @@ namespace CalculatorService.Models
         }
         #endregion
 
-        #region Multiply
+        #region Multiplication
         public static string Mult(MultRequest petition, MultResponse result)
         {
             int[] nums = petition.Multipliers;

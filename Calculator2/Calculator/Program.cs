@@ -122,7 +122,7 @@ namespace Calculator
         }
         #endregion
 
-        #region ProgramCalls
+        #region Main
         static void Main(string[] args)
         {
             string id = StoringId();

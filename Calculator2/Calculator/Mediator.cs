@@ -234,7 +234,7 @@ namespace Calculator
         }
         #endregion
 
-        #region division
+        #region Division
 
         public void Div(string trackingId)
         {

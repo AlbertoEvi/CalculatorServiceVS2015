@@ -45,7 +45,7 @@ namespace CalculatorService.Facilities
         }
         #endregion
 
-        #region storingOperation
+        #region StoringOperation
         public static void Storing(string operation, string operationType, string key)
         {
             if (key != null)
