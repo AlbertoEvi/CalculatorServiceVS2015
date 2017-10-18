@@ -80,11 +80,9 @@ namespace Calculator
 
             char symb = '-';
             string subt = Console.ReadLine();
-            while (!subt.Contains('-') || subt.Contains('+') || subt.Contains('/') || subt.Contains('*'))
-            {
-                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the subtraction): ");
-                subt = Console.ReadLine();
-            }
+
+            subt = CheckingSymbol.HaveOperationSymbol(symb, subt);
+
             int[] numbers;
             if (ParsingComprobation.CanBeParsed(symb, subt))
             {
@@ -139,12 +137,8 @@ namespace Calculator
 
             char symb = '*';
             string mult = Console.ReadLine();
-            while (!mult.Contains('*') || mult.Contains('+') || mult.Contains('/') || mult.Contains('-'))
-            {
-                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the multiplication): ");
-                mult = Console.ReadLine();
-            }
-            
+            mult = CheckingSymbol.HaveOperationSymbol(symb, mult); 
+
             int[] numbers;
             if (ParsingComprobation.CanBeParsed(symb, mult, true))
             {
@@ -199,11 +193,8 @@ namespace Calculator
 
             char symb = '/';
             string div = Console.ReadLine();
-            while (!div.Contains('/') || div.Contains('+') || div.Contains('*') || div.Contains('-'))
-            {
-                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the division): ");
-                div = Console.ReadLine();
-            }
+
+            div = CheckingSymbol.HaveOperationSymbol(symb, div);
 
             int[] numbers;
             if (ParsingComprobation.CanBeParsed(symb, div))
