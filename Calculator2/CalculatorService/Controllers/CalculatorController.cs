@@ -30,11 +30,11 @@ namespace CalculatorService.Controllers
                 {
                     return Error400().ErrorMessage.ToString();
                 }
+                
+                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").FirstOrDefault();
+                JournalService.Storing(Operations.Add(petition, result), "Sum", key);
 
                 logger.Debug(Operations.Add(petition, result));
-
-                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
-                JournalService.Storing(Operations.Add(petition, result), "Sum", key);
 
                 var hasonServer = JsonConvert.SerializeObject(result);
                 return hasonServer;
@@ -62,11 +62,11 @@ namespace CalculatorService.Controllers
                 {
                     return Error400().ErrorMessage.ToString();
                 }
-
-                logger.Debug(Operations.Subt(petition,result));
-
-                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                
+                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").FirstOrDefault();
                 JournalService.Storing(Operations.Subt(petition, result), "Subtraction", key);
+
+                logger.Debug(Operations.Subt(petition, result));
 
                 var hasonServer = JsonConvert.SerializeObject(result);
                 return hasonServer;
@@ -94,10 +94,10 @@ namespace CalculatorService.Controllers
                     return Error400().ErrorMessage.ToString();
                 }
 
-                logger.Debug(Operations.Mult(petition, result));
-
-                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").FirstOrDefault();
                 JournalService.Storing(Operations.Mult(petition, result), "Multiplication", key);
+
+                logger.Debug(Operations.Mult(petition, result));
 
                 var hasonServer = JsonConvert.SerializeObject(result);
                 return hasonServer;
@@ -124,10 +124,10 @@ namespace CalculatorService.Controllers
                 }
                 DivResponse result = new DivResponse();
 
-                logger.Debug(Operations.Div(petition, result));
-
-                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").FirstOrDefault();
                 JournalService.Storing(Operations.Div(petition, result), "Division", key);
+
+                logger.Debug(Operations.Div(petition, result));
 
                 var hasonServer = JsonConvert.SerializeObject(result);
                 return hasonServer;
@@ -155,10 +155,10 @@ namespace CalculatorService.Controllers
 
                 SquareRootResponse result = new SquareRootResponse();
 
-                logger.Debug(Operations.Sqr(petition, result));
-
-                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").First();
+                string key = Request.Headers.GetValues("X_Evi_Tracking_Id").FirstOrDefault();
                 JournalService.Storing(Operations.Sqr(petition, result),"SquareRoot", key);
+
+                logger.Debug(Operations.Sqr(petition, result));
 
                 var hasonServer = JsonConvert.SerializeObject(result);
                 return hasonServer;
@@ -209,7 +209,7 @@ namespace CalculatorService.Controllers
         {
             ErrorDto error = new ErrorDto("BadRequest", 400, "Unable to process request: the arguments or the request are null.");
 
-            logger.Error($"{error.ErrorCode} - {error.ErrorStatus} / {error.ErrorMessage}");
+            logger.Error(error.FormattedLog);
 
             return error;
         }
@@ -218,7 +218,7 @@ namespace CalculatorService.Controllers
         {
             ErrorDto error = new ErrorDto("InternalError", ex.HResult, ex.Message);
 
-            logger.Error(ex);
+            logger.Error(error.FormattedLog);
 
             return error;
         }

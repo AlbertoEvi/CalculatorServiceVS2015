@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Calculator.Models;
+using Calculator.Additionals;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
@@ -17,41 +18,26 @@ namespace Calculator
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         #region Add
-
         public void Add(string trackingId)
         {
             #region AddStuff
-
             Console.WriteLine("------Addition Operation------");
             Console.WriteLine("Type the integer sum you want to do(ex:13 + 12 + 5): ");
 
             char symb = '+';
             string sum = Console.ReadLine();
-            while (!sum.Contains('+') || sum.Contains('-') || sum.Contains('/') || sum.Contains('*')) {
-                Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the sum): ");
-                sum = Console.ReadLine();
-            }
-            string[] nums = sum.Split(symb);
 
-            int[] numbers = new int[nums.Length];
-            for (int i = 0; i < nums.Length; i++)
-            {
-                int n;
-                bool isNumeric;
-                if (isNumeric = int.TryParse(nums[i], out n))
-                {
-                    numbers[i] = int.Parse(nums[i].Trim());
-                    Console.WriteLine(numbers[i]);
-                }else
-                {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
-                    return;
-                }
+            sum = CheckingSymbol.HaveOperationSymbol(symb, sum);
+
+            int[] numbers;
+            if (ParsingComprobation.CanBeParsed(symb, sum)) {
+                numbers = ParsingComprobation.Parse(ParsingComprobation.SeparateString(symb, sum));
+            } else {
+                return;
             }
             #endregion
 
             #region Connection
-
             AddRequest addition = new AddRequest();
             AddResponse result = new AddResponse();
 
@@ -86,11 +72,9 @@ namespace Calculator
         #endregion
 
         #region Subtraction
-
         public void Subt(string trackingId)
         {
             #region SubtractionStuff
-
             Console.WriteLine("------Subtraction Operation------");
             Console.WriteLine("Type the integer subtraction you want to do(ex:13 - 12 - 5): ");
 
@@ -101,28 +85,18 @@ namespace Calculator
                 Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the subtraction): ");
                 subt = Console.ReadLine();
             }
-            string[] nums = subt.Split(symb);
-
-            int[] numbers = new int[nums.Length];
-            for (int i = 0; i < nums.Length; i++)
+            int[] numbers;
+            if (ParsingComprobation.CanBeParsed(symb, subt))
             {
-                int n;
-                bool isNumeric;
-                if (isNumeric = int.TryParse(nums[i], out n))
-                {
-                    numbers[i] = int.Parse(nums[i].Trim());
-                    Console.WriteLine(numbers[i]);
-                }
-                else
-                {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
-                    return;
-                }
+                numbers = ParsingComprobation.Parse(ParsingComprobation.SeparateString(symb, subt));
+            }
+            else
+            {
+                return;
             }
             #endregion
 
             #region Connection
-
             SubtractRequest subtract = new SubtractRequest();
             SubtractResponse result = new SubtractResponse();
 
@@ -157,11 +131,9 @@ namespace Calculator
         #endregion
 
         #region Multiply
-
         public void Mult(string trackingId)
         {
             #region MultiplicationStuff
-
             Console.WriteLine("------Multplication Operation------");
             Console.WriteLine("Type the integer multiplication you want to do, multipliers must have 10 or less digits(ex:13 * 12 * 5): ");
 
@@ -172,35 +144,19 @@ namespace Calculator
                 Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the multiplication): ");
                 mult = Console.ReadLine();
             }
-            string[] nums = mult.Split(symb);
-
-            int[] numbers = new int[nums.Length];
-            for (int i = 0; i < nums.Length; i++)
+            
+            int[] numbers;
+            if (ParsingComprobation.CanBeParsed(symb, mult, true))
             {
-                int n;
-                bool isNumeric;
-
-                if (nums[i].Length > 10)
-                {
-                    Console.WriteLine("One or more values introduced have more than 10 digits, try it again: ");
-                    return;
-                }
-                
-                if (isNumeric = int.TryParse(nums[i], out n))
-                {
-                    numbers[i] = int.Parse(nums[i].Trim());
-                    Console.WriteLine(numbers[i]);
-                }
-                else
-                {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
-                    return;
-                }
+                numbers = ParsingComprobation.Parse(ParsingComprobation.SeparateString(symb, mult));
+            }
+            else
+            {
+                return;
             }
             #endregion
 
             #region Connection
-
             MultRequest multiply = new MultRequest();
             MultResponse result = new MultResponse();
 
@@ -235,11 +191,9 @@ namespace Calculator
         #endregion
 
         #region Division
-
         public void Div(string trackingId)
         {
             #region DivisionStuff
-
             Console.WriteLine("-------Division Operation------");
             Console.WriteLine("Type the integer division you want to do(ex:1243 / 12 / 2): ");
 
@@ -250,28 +204,19 @@ namespace Calculator
                 Console.WriteLine("Error at the reading of the string, please write it again(the operation symbol is not valid to the division): ");
                 div = Console.ReadLine();
             }
-            string[] nums = div.Split(symb);
 
-            int[] numbers = new int[nums.Length];
-            for (int i = 0; i < nums.Length; i++)
+            int[] numbers;
+            if (ParsingComprobation.CanBeParsed(symb, div))
             {
-                int n;
-                bool isNumeric;
-                if (isNumeric = int.TryParse(nums[i], out n))
-                {
-                    numbers[i] = int.Parse(nums[i].Trim());
-                    Console.WriteLine(numbers[i]);
-                }
-                else
-                {
-                    Console.WriteLine("One or more of the values introduced aren't integers, try it again.");
-                    return;
-                }
+                numbers = ParsingComprobation.Parse(ParsingComprobation.SeparateString(symb, div));
+            }
+            else
+            {
+                return;
             }
             #endregion
 
             #region Connection
-
             DivRequest division = new DivRequest();
             DivResponse result = new DivResponse();
 
@@ -308,11 +253,9 @@ namespace Calculator
         #endregion
 
         #region SquareRoot
-
         public void Square(string trackingId)
         {
             #region SquareRootStuff
-
             Console.WriteLine("-------Square Root Operation------");
             Console.WriteLine("Type the number to make the square root of it(ex: 12): ");
 
@@ -331,11 +274,9 @@ namespace Calculator
                 Console.WriteLine("The value introduced isn't valid, try it again.");
                 return;
             }
-
             #endregion
 
             #region Connection
-
             SquareRootRequest squareRoot = new SquareRootRequest();
             SquareRootResponse result = new SquareRootResponse();
 

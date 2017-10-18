@@ -23,13 +23,15 @@ namespace CalculatorService.Models
             this.ErrorCode = code;
             this.ErrorStatus = status;
             this.ErrorMessage = message;
+
+            CreateFormatedLog();
         }
         #endregion
 
         #region Methods
-        private void CreateFoormatedLog()
+        private void CreateFormatedLog()
         {
-            FormattedLog = "Create complicated Log";
+            FormattedLog = $"{DateTime.Now} {this.ErrorCode} {this.ErrorStatus} {this.ErrorMessage}";
         }
         #endregion
     }

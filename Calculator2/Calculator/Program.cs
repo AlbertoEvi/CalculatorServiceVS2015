@@ -7,8 +7,10 @@ namespace Calculator
 {
     public class Program
     {
+        #region Variables
         static Mediator med = new Mediator();
         public static CalculatorTest test = new CalculatorTest();
+        #endregion
 
         #region Storing
         public static string StoringId()

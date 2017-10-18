@@ -10,3 +10,11 @@ Subtraction => 40 - 22 = 18 || This are the operations from the autotesting || 1
 Multiplication => 22 = 880 || This are the operations from the autotesting || 18/10/2017 9:31:42
 Division => 22 = 1 | Remainder = 1 || This are the operations from the autotesting || 18/10/2017 9:31:43
 SquareRoot => v-- 25 = 5 || This are the operations from the autotesting || 18/10/2017 9:31:43
+Sum => 12 + 31 = 43 ||  || 18/10/2017 11:07:44
+Sum => 12 + 31 = 43 ||  || 18/10/2017 11:08:50
+Sum => 12 + 31 = 43 ||  || 18/10/2017 11:10:03
+Sum => 32 + 2 = 34 || weeee || 18/10/2017 14:17:21
+Subtraction => 21 - 1 = 20 || weeee || 18/10/2017 14:18:16
+Sum => 112 + 121 + 1 = 234 || yetyt || 18/10/2017 14:26:52
+Sum => 21 + 12 + 2 = 35 || yiiiiiii || 18/10/2017 16:25:39
+Sum => 12 + 2 + 12 = 26 || yiiiiiii || 18/10/2017 16:30:38

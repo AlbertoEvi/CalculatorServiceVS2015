@@ -51,6 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Additionals\CheckingSymbol.cs" />
+    <Compile Include="Additionals\ParsingComprobation.cs" />
     <Compile Include="CalculatorTest.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="Models\AddRequest.cs" />
